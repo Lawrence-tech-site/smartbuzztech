@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartBuzz Tech</title>
+  <style>
+    body {font-family: Arial, sans-serif; margin:0; padding:0; background:#f9f9f9;}
+    header {background:#fff; padding:20px; text-align:center; box-shadow:0 2px 4px rgba(0,0,0,0.1);}
+    h1 {margin:0; color:#333;}
+    #posts {display:flex; flex-wrap:wrap; gap:20px; padding:20px; justify-content:center;}
+    .post {background:#fff; border-radius:8px; box-shadow:0 2px 4px rgba(0,0,0,0.1);
+           width:280px; overflow:hidden; text-align:center; padding-bottom:10px;}
+    .post img {width:100%; height:180px; object-fit:cover;}
+    .post h3 {margin:10px; font-size:18px; color:#333;}
+    .post p {font-size:14px; color:#666; padding:0 10px;}
+    .post a {display:inline-block; margin-top:5px; background:#007bff; color:#fff; padding:8px 12px;
+             text-decoration:none; border-radius:4px;}
+    footer {text-align:center; padding:10px; font-size:12px; color:#999; background:#fff; margin-top:20px;}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>SmartBuzz Tech</h1>
+    <p>Your daily dose of AI tools & smart gadgets</p>
+  </header>
+  <section id="posts"></section>
+  <footer>© 2025 SmartBuzz Tech | All Rights Reserved</footer>
+  <script>
+    fetch('posts.json')
+      .then(res => res.json())
+      .then(data => {
+        const postsDiv = document.getElementById('posts');
+        data.forEach(post => {
+          const card = document.createElement('div');
+          card.className='post';
+          card.innerHTML = `<img src="${post.image}" alt="${post.title}">
+                            <h3>${post.title}</h3>
+                            <p>${post.excerpt}</p>
+                            <a href="${post.affiliate}" target="_blank">View Product</a>`;
+          postsDiv.appendChild(card);
+        });
+      });
+  </script>
+</body>
+</html>
